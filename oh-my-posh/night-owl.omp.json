@@ -6,7 +6,7 @@
       "segments": [
         {
           "background": "#21c7a8",
-          "foreground": "#011627",
+          "foreground": "#fdfffb",
           "leading_diamond": "\u256d\u2500\ue0b6",
           "properties": {
             "windows": "\uf871"
@@ -26,7 +26,7 @@
         },
         {
           "background": "#82AAFF",
-          "foreground": "#011627",
+          "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "folder_icon": "\uf07c ",
@@ -77,7 +77,7 @@
     },
     {
       "alignment": "right",
-      "overflow": "break",
+      "overflow": "hide",
       "segments": [
         {
           "background": "#d6deeb",
