@@ -700,6 +700,26 @@ Set-PSReadLineKeyHandler -Key Alt+m `
     # [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
+# key handler alt + b to back to the previous directory
+Set-PSReadLineKeyHandler -Key Alt+b `
+    -BriefDescription BackToPreviousDirectory `
+    -LongDescription "Back to the previous directory" `
+    -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("cd ..")
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+
+# key handler alt + h to navigate to $HUYNH_CONFIG_DIR
+Set-PSReadLineKeyHandler -Key Alt+h `
+    -BriefDescription NavigateToConfig `
+    -LongDescription "Navigate to $HUYNH_CONFIG_DIR" `
+    -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("cd $env:HUYNH_CONFIG_DIR")
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+
 ## Function
 function enterGitbash {
     # add try catch
