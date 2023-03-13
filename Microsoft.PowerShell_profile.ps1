@@ -9,6 +9,8 @@ if ($host.Name -eq 'ConsoleHost') {
 #Import-Module posh-git
 Import-Module -Name Terminal-Icons
 # set-alias desktop "Desktop.ps1"
+function GitStatus { & git status $args }
+set-alias gs GitStatus
 #Set-Theme ParadoxGlucose
 #Set-PoshPrompt -theme "D:\Dropbox\poshv3.json"
 
