@@ -9,8 +9,6 @@ if ($host.Name -eq 'ConsoleHost') {
 #Import-Module posh-git
 Import-Module -Name Terminal-Icons
 # set-alias desktop "Desktop.ps1"
-function GitStatus { & git status $args }
-set-alias gs GitStatus
 #Set-Theme ParadoxGlucose
 #Set-PoshPrompt -theme "D:\Dropbox\poshv3.json"
 
@@ -733,10 +731,6 @@ function enterGitbash {
     }
 }
 
-## Alias
-set-alias gbash "enterGitbash"
-
-
 # function prompt {
 #     $loc = $executionContext.SessionState.Path.CurrentLocation;
 
@@ -747,7 +741,8 @@ set-alias gbash "enterGitbash"
 #     return $out
 # }
 
-
+## ALIAS
+set-alias gbash "enterGitbash"
 # set alias `blg` will open https://gogojungle.backlog.jp/view/${current git branch name}
 function openBackLogGgj {
     $branch = git rev-parse --abbrev-ref HEAD
@@ -756,3 +751,25 @@ function openBackLogGgj {
 }
 set-alias blg openBackLogGgj
 
+function GitStatus { & git status $args }
+set-alias gs GitStatus
+
+# Alias to run command as administrator
+function openAdminTerminal {
+    # open a new terminal as admin at the current directory
+    $current_dir = Get-Location
+    $admin_terminal = "C:\Users\congh\AppData\Local\Microsoft\WindowsApps\Microsoft.PowerShell_8wekyb3d8bbwe\pwsh.exe"
+
+    # check admin_terminal exists
+    if (!(Test-Path $admin_terminal)) {
+        Write-Host "Warning: $admin_terminal not found"
+        Write-Host "Please install powershell from Microsoft Store or correct the path"
+        Write-Host "Using built-in powershell instead"
+        Start-Process powershell -Verb RunAs -ArgumentList "-NoExit -Command cd $current_dir"
+        return
+    }
+    # open a new terminal not as admin at the current directory
+    Start-Process -FilePath $admin_terminal -Verb RunAs -ArgumentList "-NoExit -Command cd $current_dir"
+
+}
+set-alias admin openAdminTerminal
