@@ -746,3 +746,13 @@ set-alias gbash "enterGitbash"
 #     }
 #     return $out
 # }
+
+
+# set alias `blg` will open https://gogojungle.backlog.jp/view/${current git branch name}
+function openBackLogGgj {
+    $branch = git rev-parse --abbrev-ref HEAD
+    $url = "https://gogojungle.backlog.jp/view/$branch"
+    start $url
+}
+set-alias blg openBackLogGgj
+
